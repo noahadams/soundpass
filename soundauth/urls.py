@@ -4,9 +4,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'soundauth.views.home', name='home'),
-    # url(r'^soundauth/', include('soundauth.foo.urls')),
+    url(r'^', include('soundauth.core.urls')),
 
+    # Admin
     url(r'^admin/', include(admin.site.urls)),
 )
