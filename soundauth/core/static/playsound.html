@@ -21,14 +21,14 @@
 soundLib.init();
 
 var sampleUrls = [
-"./samples/808/1.wav",
-"./samples/808/2.wav",
-"./samples/808/3.wav",
-"./samples/808/4.wav",
-"./samples/808/5.wav",
-"./samples/808/6.wav",
-"./samples/808/7.wav",
-"./samples/808/8.wav"
+"./samples/808/1.mp3",
+"./samples/808/2.mp3",
+"./samples/808/3.mp3",
+"./samples/808/4.mp3",
+"./samples/808/5.mp3",
+"./samples/808/6.mp3",
+"./samples/808/7.mp3",
+"./samples/808/8.mp3"
 ];
 
 errback = function() {
@@ -46,6 +46,8 @@ _.map(sampleUrls, function(url) {
       }
       , url);
 })
+
+var instruments {} 
 
 // Bind Some Handlers
 $ = jQuery;
