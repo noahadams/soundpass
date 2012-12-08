@@ -33,7 +33,7 @@ for(i=0, len=sampleUrls.length; i < len; i++) {
               console.log("Loaded " + url);
           }
           , url);
-    )();
+    })();
 }
 
 //////////////////////////////////////////////////////////
