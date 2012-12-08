@@ -4,14 +4,14 @@
 soundLib.init();
 
 var sampleUrls = [
-"/static/samples/808/1.wav", // Kick
-"/static/samples/808/2.wav", // Snare
-"/static/samples/808/3.wav", // Low-conga
-"/static/samples/808/4.wav", // Mid-conga
-"/static/samples/808/5.wav", // High-conga
-"/static/samples/808/6.wav", // Closed high hat
-"/static/samples/808/7.wav", // Clap
-"/static/samples/808/8.wav"
+"/static/samples/808/1.mp3", // Kick
+"/static/samples/808/2.mp3", // Snare
+"/static/samples/808/3.mp3", // Low-conga
+"/static/samples/808/4.mp3", // Mid-conga
+"/static/samples/808/5.mp3", // High-conga
+"/static/samples/808/6.mp3", // Closed high hat
+"/static/samples/808/7.mp3", // Clap
+"/static/samples/808/8.mp3"
 ];
 
 errback = function() {
