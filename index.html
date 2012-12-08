@@ -115,7 +115,7 @@
         })
 
         $(".beat").on("step", function(){
-            // DO SOME STUFFS
+            console.log("play sounds!");
         })
 
         // Step through each column and act on the various elements
@@ -125,7 +125,11 @@
 
             // add step class to elements in colNun
             _.map($(".row"), function(element){
-                $(".beat, .time", element).eq(currCol).addClass("step")
+                var element = $(".beat, .time", element).eq(currCol)
+                element.addClass("step");
+                if (element.hasClass("pressed")){
+                    element.trigger("step");
+                }
             });
 
             // Increment current column
