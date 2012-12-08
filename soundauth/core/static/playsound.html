@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>I'm going to play sound</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+</head>
+<body>
+<h1>Sound Player</h1>
+
+<div id="bass" style="width: 400px; height: 100px; outline: 1px solid red;">BASS</div>
+<div id="kick" style="width: 400px; height: 100px; outline: 1px solid red;">KICK</div>
+
+<script src="js/vendor/underscore-min.js"></script>
+<script src="js/vendor/jquery-1.8.3.js"></script>
+<script src="js/soundlib.js"></script>
+<script type="text/javascript">
+// initialize audio
+soundLib.init();
+
+var sampleUrls = [
+"./samples/808/1.wav",
+"./samples/808/2.wav",
+"./samples/808/3.wav",
+"./samples/808/4.wav",
+"./samples/808/5.wav",
+"./samples/808/6.wav",
+"./samples/808/7.wav",
+"./samples/808/8.wav"
+];
+
+errback = function() {
+    console.log("Error!");
+}
+
+// A place for samples to live
+sampleBuffers = []
+
+_.map(sampleUrls, function(url) {
+    soundLib.loadUrl(errback
+      , function(buffer) {
+          sampleBuffers.push(buffer);
+          console.log("Loaded " + url);
+      }
+      , url);
+})
+
+// Bind Some Handlers
+$ = jQuery;
+$bass = $('#bass')
+$kick = $('#kick')
+
+$bass.on('click', function() {
+    soundLib.playNow(sampleBuffers[0]);
+});
+
+$kick.on('click', function() {
+    soundLib.playNow(sampleBuffers[1]);
+});
+</script>
+</body>
+</html>
