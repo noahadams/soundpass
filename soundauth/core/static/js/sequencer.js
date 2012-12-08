@@ -69,7 +69,7 @@ $(".beat").on("click", function(){
 })
 
 $(".row").on("step", function(el){
-    var index = $(".row").index(el.target);
+    var index = $(".row").index(el.target) - 1;
     soundLib.playNow(sampleBuffers[index]);
 })
 
