@@ -5,6 +5,9 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <style>
+        .main {
+            min-width: 800px;
+        }
         .row {
             margin: 20px;
         }
@@ -23,17 +26,61 @@
         .row .beat:hover {
             background: #CCC;
         }
+        .row .beat.pressed {
+            background-color: #FE2;
+        }
+        .beat.pressed:hover {
+            background-color: #FC0;
+        }
+        .play, .time {
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            background-color: #F00;
+        }
+        .play:hover, .time:hover {
+            background-color: #F55;
+        }
+        .play {
+            width: 50px;
+            height: 50px;
+        }
+        .time {
+            margin: 0 auto;
+            margin-top: 20px;
+            width: 20px;
+            height: 20px;
+        }
+        .step.time {
+            background-color: black;
+        }
+        .step.beat.pressed {
+            background-color: black;
+        }
     </style>
   </head>
   <body>
-    <h1>PROTECT YOUR INFORMATION WITH MUSIC!</h1>
     <div class="main">
         <div class="step-sequencer">
-            <div class="row guitar">
-                <div class="span1 desc">Guitar:</div>
+            <div class="controls">
+                <div class="row timeline">
+                    <div class="span1">
+                        <div class="play">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="row drum">
+            <div class="row noise kick">
+                <div class="span1 desc">Kick:</div>
+            </div>
+            <div class="row noise drum">
                 <div class="span1 desc">Drum:</div>
+            </div>
+            <div class="row noise clap">
+                <div class="span1 desc">Clap:</div>
+            </div>
+            <div class="row noise snare">
+                <div class="span1 desc">Snare:</div>
             </div>
         </div>
     </div>
@@ -41,13 +88,61 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/underscore-min.js"></script>
     <script>
+        // CONSTANTS
         var NUM_COLS = 8;
-        var col = "<div class=\"span1 beat\">Beat</div>";
-        var row = "";
+
+        // STATE
+        var currCol = 0;
+        var timer = null;
+
+        // SETUP
+        var beatCol = "<div class=\"span1\"><div class=\"beat\"></div></div>";
+        var timeCol = "<div class=\"span1\"><div class=\"time\"></div></div>";
+        var beatRow = "";
+        var timeRow = "";
+
+
         for(i = 0; i < NUM_COLS; i++) {
-            row += col;
+            beatRow += beatCol;
+            timeRow += timeCol;
         }
-        $(".row").append($(row))
+        $(".noise").append($(beatRow));
+        $(".timeline").append($(timeRow));
+
+        // EVENT HANDLERS
+        $(".beat").on("click", function(){
+            $(this).toggleClass("pressed")
+        })
+
+        $(".beat").on("step", function(){
+
+        })
+
+        var stepCol = function() {
+            // clear all step classes
+            $(".beat, .time").removeClass("step");
+            // add step class to elements in colNun
+            _.map($(".row"), function(element){
+                $(".beat, .time", element).eq(currCol).addClass("step")
+            });
+            // Increment current column
+            currCol += 1;
+            if (currCol > NUM_COLS) {
+                currCol = 0;
+            }
+            timer = setTimeout(stepCol, 200);
+        }
+
+        var self = this;
+        $(".play").on("click", function(){
+            var playButton = $(this);
+            playButton.toggleClass("pressed");
+            if (playButton.hasClass("pressed")) {
+                stepCol();
+            } else {
+                clearTimeout(timer);
+            }
+        })
     </script>
   </body>
 </html>
