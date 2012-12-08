@@ -1,19 +1,46 @@
 {% extends 'base.html' %}    
 
 {% block content %}
-    <form action="/login/" method="POST">
+    <div class="hero-unit">
+    <form action="/login/" method="POST" class="form-horizontal">
         {% csrf_token %}
 
-        {% for field in form %}
-            {{ field.name }}
-            {{ field }}
-        {% endfor %}
+        <fieldset>
+            <legend>Login</legend>
+
+            {% if form.non_field_errors %}
+            <div class="alert alert-error">
+                Username or Password Didn't Match
+            </div>
+            {% endif %}
+            
+            <div class="control-group {% if form.username.errors %}error{% endif %}">
+                <label for="id_username" class="control-label">Username</label>
+                <div class="controls">
+                    <input type="text" name="username" id="id_username">
+                    {% if form.username.errors %}
+                    <span class="help-inline">Username does not exist</span>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="control-group {% if form.password1.errors %}error{% endif %}">
+                <label for="id_password1" class="control-label">Password</label>
+                <div class="controls">
+                    <input type="password" name="password" id="id_password">
+                </div>
+                    {% if form.password1.errors %}
+                    <span class="help-inline">Password Did Not Match</span>
+                    {% endif %}
+            </div>
+        </fieldset>
 
         <input type="hidden" name="next" value="/">
 
-        <input type="submit" value="Login">
-
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
     </form>
-
+    </div>
 {% endblock %}
 
