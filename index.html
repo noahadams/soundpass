@@ -90,6 +90,7 @@
     <script>
         // CONSTANTS
         var NUM_COLS = 8;
+        var STEP_SPEED = 200; // 200ms
 
         // STATE
         var currCol = 0;
@@ -100,7 +101,6 @@
         var timeCol = "<div class=\"span1\"><div class=\"time\"></div></div>";
         var beatRow = "";
         var timeRow = "";
-
 
         for(i = 0; i < NUM_COLS; i++) {
             beatRow += beatCol;
@@ -115,25 +115,29 @@
         })
 
         $(".beat").on("step", function(){
-
+            // DO SOME STUFFS
         })
 
+        // Step through each column and act on the various elements
         var stepCol = function() {
             // clear all step classes
             $(".beat, .time").removeClass("step");
+
             // add step class to elements in colNun
             _.map($(".row"), function(element){
                 $(".beat, .time", element).eq(currCol).addClass("step")
             });
+
             // Increment current column
             currCol += 1;
             if (currCol > NUM_COLS) {
                 currCol = 0;
             }
-            timer = setTimeout(stepCol, 200);
+
+            // continue to step through
+            timer = setTimeout(stepCol, STEP_SPEED);
         }
 
-        var self = this;
         $(".play").on("click", function(){
             var playButton = $(this);
             playButton.toggleClass("pressed");
