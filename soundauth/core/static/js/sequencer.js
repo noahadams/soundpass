@@ -21,14 +21,20 @@ errback = function() {
 // A place for samples to live
 sampleBuffers = []
 
-_.map(sampleUrls, function(url) {
-    soundLib.loadUrl(errback
-      , function(buffer) {
-          sampleBuffers.push(buffer);
-          console.log("Loaded " + url);
-      }
-      , url);
-})
+var url, i, len = sampleUrls.length;
+for(i=0, len=sampleUrls.length; i < len; i++) {
+    url = sampleUrls[i];
+    // closure to hold value of i around asyncily
+    (function() {
+        var _i = i;
+        soundLib.loadUrl(errback
+          , function(buffer) {
+              sampleBuffers[_i] = buffer;
+              console.log("Loaded " + url);
+          }
+          , url);
+    )();
+}
 
 //////////////////////////////////////////////////////////
 
