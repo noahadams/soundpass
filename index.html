@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Soundpass</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style>
+        .row {
+            margin: 20px;
+        }
+        .row .beat {
+            background-color: #EEE;
+            text-align: center;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            min-height: 40px;
+            line-height: 40px;
+        }
+        .row:hover .beat{
+            background: #DDD;
+        }
+        .row .beat:hover {
+            background: #CCC;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>PROTECT YOUR INFORMATION WITH MUSIC!</h1>
+    <div class="main">
+        <div class="step-sequencer">
+            <div class="row guitar">
+                <div class="span1 desc">Guitar:</div>
+            </div>
+            <div class="row drum">
+                <div class="span1 desc">Drum:</div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-1.8.3.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/underscore-min.js"></script>
+    <script>
+        var NUM_COLS = 8;
+        var col = "<div class=\"span1 beat\">Beat</div>";
+        var row = "";
+        for(i = 0; i < NUM_COLS; i++) {
+            row += col;
+        }
+        $(".row").append($(row))
+    </script>
+  </body>
+</html>
