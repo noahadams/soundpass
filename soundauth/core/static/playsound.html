@@ -10,18 +10,43 @@
 <body>
 <h1>Sound Player</h1>
 
-<script src="soundlib.js"></script>
+<div id="bass">BASS</div>
+<div id="kick">KICK</div>
+
+<script src="js/lib/underscore-min.js"></script>
+<script src="js/soundlib.js"></script>
 <script type="text/javascript">
+// initialize audio
+soundLib.init();
+
 var sampleUrls = [
-"./samples/1.wav",
-"./samples/2.wav",
-"./samples/3.wav",
-"./samples/4.wav",
-"./samples/5.wav",
-"./samples/6.wav",
-"./samples/7.wav",
-"./samples/8.wav"
+"./samples/808/1.wav",
+"./samples/808/2.wav",
+"./samples/808/3.wav",
+"./samples/808/4.wav",
+"./samples/808/5.wav",
+"./samples/808/6.wav",
+"./samples/808/7.wav",
+"./samples/808/8.wav"
 ];
+
+errback = function() {
+    console.log("Error!");
+}
+
+// A place for samples to live
+sampleBuffers = []
+
+_.map(sampleUrls, function(url) {
+    soundLib.loadUrl(errback
+      , function(buffer) {
+          sampleBuffers.push(buffer);
+          console.log("Loaded " + url);
+      }
+      , url);
+})
+
+
 </script>
 </body>
 </html>
