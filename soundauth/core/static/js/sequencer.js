@@ -38,7 +38,10 @@ _.map(sampleUrls, function(url) {
  * CONSTANTS
  */
 var NUM_COLS = 8;
-var STEP_SPEED = 200; // 200ms
+// Beats per minute
+var BPM = 120;
+// 8 8th note steps, 4 beats
+var STEP_SPEED = 30000/BPM; // 200ms
 
 /*
  * STATE
