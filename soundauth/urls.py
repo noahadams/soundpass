@@ -4,6 +4,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf import settings
 
 urlpatterns = patterns('',
     url(r'^', include('soundauth.core.urls')),
@@ -13,3 +14,7 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += staticfiles_urlpatterns()
+
+urlpatterns += patterns('',
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+)
