@@ -1,3 +1,39 @@
+//////////////////////////////////////////////////////////
+
+// initialize audio
+soundLib.init();
+
+var sampleUrls = [
+"/static/samples/808/1.wav", // Kick
+"/static/samples/808/2.wav", // Snare
+"/static/samples/808/3.wav", // Low-conga
+"/static/samples/808/4.wav", // Mid-conga
+"/static/samples/808/5.wav", // High-conga
+"/static/samples/808/6.wav", // Closed high hat
+"/static/samples/808/7.wav", // Clap
+"/static/samples/808/8.wav"
+];
+
+errback = function() {
+    console.log("Error!");
+}
+
+// A place for samples to live
+sampleBuffers = []
+
+_.map(sampleUrls, function(url) {
+    soundLib.loadUrl(errback
+      , function(buffer) {
+          sampleBuffers.push(buffer);
+          console.log("Loaded " + url);
+      }
+      , url);
+})
+
+//////////////////////////////////////////////////////////
+
+
+
 /*
  * CONSTANTS
  */
@@ -32,8 +68,9 @@ $(".beat").on("click", function(){
     $(this).toggleClass("pressed")
 })
 
-$(".beat").on("step", function(){
-    console.log("play sounds!");
+$(".row").on("step", function(el){
+    var index = $(".row").index(el.target);
+    soundLib.playNow(sampleBuffers[index]);
 })
 
 $(".play").on("click", function(){
@@ -56,11 +93,11 @@ var stepCol = function() {
     $(".beat, .time").removeClass("step");
 
     // add step class to elements in colNun
-    $(".row").map(function(index, element){
-        var element = $(".beat, .time", element).eq(currCol)
+    $(".row").map(function(index, row){
+        var element = $(".beat, .time", row).eq(currCol)
         element.addClass("step");
         if (element.hasClass("pressed")){
-            element.trigger("step");
+            $(row).trigger("step");
         }
     });
 
