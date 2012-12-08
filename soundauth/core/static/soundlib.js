@@ -16,7 +16,13 @@ var init = soundLib.init = function() {
  * Invoke callback(buffer) after having loaded an audio file from url
  */
 var loadUrl = soundLib.loadUrl = function (err, cb, url) {
-    var req = new XMLHttpRequest();
+    var req = new XMLHttpRequest()
+      , absolutify = document.createElement("A");
+      , absoluteUrl;
+
+    absolutify.href = url;
+    absoluteUrl = absolutify.href;
+    
     req.open('GET', url, true);
     req.responseType = 'arraybuffer';
 
