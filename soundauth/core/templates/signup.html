@@ -2,48 +2,53 @@
 
 {% block content %}
     <div class="hero-unit">
-    <form action="/login/" method="POST" class="form-horizontal">
+    <form action="/signup/" method="POST" class="form-horizontal">
         {% csrf_token %}
 
         <fieldset>
-            <legend>Login</legend>
-
-            {% if form.non_field_errors %}
-            <div class="alert alert-error">
-                Username or Password Didn't Match
-            </div>
-            {% endif %}
+            <legend>Signup</legend>
             
             <div class="control-group {% if form.username.errors %}error{% endif %}">
                 <label for="id_username" class="control-label">Username</label>
                 <div class="controls">
                     <input type="text" name="username" id="id_username">
                     {% if form.username.errors %}
-                    <span class="help-inline">Username does not exist</span>
+                    <span class="help-inline">Username is taken</span>
                     {% endif %}
                 </div>
             </div>
-           
+            
             <div class="control-group {% if form.password1.errors %}error{% endif %}">
                 <label for="id_password1" class="control-label">Password</label>
                 <div class="controls">
-                    <input type="password" name="password" id="id_password" class="password_field">
+                    <input type="password" name="password1" id="id_password1" class="password_field">
                 </div>
                     {% if form.password1.errors %}
-                    <span class="help-inline">Password Did Not Match</span>
+                    <span class="help-inline">Password Mismatch</span>
                     {% endif %}
-                {% include '_sequencer.html' %}
-
+            </div>
+            
+            <div class="control-group {% if form.password2.errors %}error{% endif %}">
+                <label for="id_password2" class="control-label">Confirm Password</label>
+                <div class="controls">
+                    <input type="password" name="password2" id="id_password2" class="password_field">
+                    {% if form.password2.errors %}
+                    <span class="help-inline">Password Mismatch</span>
+                    {% endif %}
+                </div>
             </div>
         </fieldset>
+
 
         <input type="hidden" name="next" value="/">
 
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary" id="id_submit">Login</button>
+            <button type="submit" class="btn btn-primary" id="id_submit">Signup</button>
         </div>
     </form>
+        {% include '_sequencer.html' %}
     </div>
+
 {% endblock %}
 
 {% block scripts %}
