@@ -103,7 +103,7 @@ var stepCol = function() {
 
     // Increment current column
     currCol += 1;
-    if (currCol > NUM_COLS) {
+    if (currCol == NUM_COLS) {
         currCol = 0;
     }
 
