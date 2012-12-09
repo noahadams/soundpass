@@ -25,11 +25,14 @@ class SignupView(FormView):
         username = form.cleaned_data['username']
         password = form.cleaned_data['password1']
 
+
+
         user = User.objects.create_user(username, '', password)
         user.save()
 
         backend = get_backends()[0]
         user.backend = '%s.%s' % (backend.__module__, backend.__class__.__name__)
+        user.openid_set.create(openid=user.username)
         
         login(self.request, user)
         return super(SignupView, self).form_valid(form)
