@@ -11,6 +11,9 @@ urlpatterns = patterns('',
 
     # Admin
     url(r'^admin/', include(admin.site.urls)),
+
+    # OpenId provider
+    url(r'^openid/', include('openid_provider.urls')),
 )
 
 urlpatterns += staticfiles_urlpatterns()
