@@ -54,6 +54,8 @@ var NUM_COLS = 8;
 var BPM = 120;
 // 8 8th note steps, 4 beats
 var STEP_SPEED = 30000/BPM; // 200ms
+// Hack to determine event handling
+var tap = /ip(hone|od|ad)|android.*(mobile)/i.test(navigator.userAgent) ? "touchstart": "click";
 
 /*
  * STATE
@@ -79,7 +81,7 @@ $(".timeline").append($(timeRow));
 /*
  * EVENT HANDLERS
  */
-$(".beat").on("click", function(){
+$(".beat").on(tap, function(){
     $(this).toggleClass("pressed")
 })
 
@@ -88,7 +90,8 @@ $(".row").on("step", function(el){
     soundLib.playNow(sampleBuffers[index]);
 })
 
-$(".play").on("click", function(){
+$(".play").on(tap, function(){
+    event.preventDefault();
     var playButton = $(this);
     playButton.toggleClass("pressed");
     if (playButton.hasClass("pressed")) {
