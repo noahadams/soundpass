@@ -3,4 +3,4 @@ venv/
 *.swp
 .DS_Store
 *.sqlite
-static/
+./static/
