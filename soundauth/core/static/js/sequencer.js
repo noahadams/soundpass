@@ -103,6 +103,10 @@ $(".play").on(tap, function(){
     }
 });
 
+$(".clear").on(tap, function() {
+    $(".beat").removeClass("pressed");
+})
+
 /*
  * HELPER METHODS
  */
