@@ -8,7 +8,7 @@
                 {% if user.is_authenticated %}
                 <h3>Your open id URL is:</h3>
 
-                <textarea style="color: black; width: 400px">https://soundauth.herokuapp.com/openid/{{ user.username }}/
+                <textarea style="color: black; width: 400px">https://soundauth.herokuapp.com/openid/{{ user.username }}
                 </textarea>
                 {% else %}
                 <p><a class="btn btn-primary btn-large" href="/signup/">Sign Up</a></p>
