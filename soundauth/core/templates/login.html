@@ -37,7 +37,12 @@
             </div>
         </fieldset>
 
+        {% if next %}
+        <input type="hidden" name="next" value="{{ next }}">
+        {% else %}
+
         <input type="hidden" name="next" value="/">
+        {% endif %}
 
         <div class="form-actions">
             <button type="submit" class="btn btn-primary" id="id_submit">Login</button>
