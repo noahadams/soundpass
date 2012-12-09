@@ -7,7 +7,7 @@ import dj_database_url
 
 PROJECT_ROOT = ROOT_PATH = os.path.join(os.path.sep, *os.path.abspath(__file__).split(os.path.sep)[:-2])
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
