@@ -118,6 +118,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
 
     'soundauth.core',
+    'openid_provider',
 )
 
 # A sample logging configuration. The only tangible logging
