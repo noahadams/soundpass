@@ -82,3 +82,8 @@
 .step.beat.pressed {
     background-color: black;
 }
+
+/* Hide the password input */
+#password-input label, #password-input .controls, .password-input {
+    display: none;
+}
