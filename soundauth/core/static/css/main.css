@@ -35,12 +35,25 @@ body {
     border-radius: 50%;
     background-color: #F00;
 }
-.play:hover, .time:hover {
-    background-color: #F55;
-}
 .play {
-    width: 50px;
-    height: 50px;
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+.loading .play{
+    background: url(/static/img/loader.gif) center center no-repeat;
+}
+.icon-play, .icon-pause {
+    display: none;
+    position: absolute;
+    left: 14px;
+    top: 11px;    
+}
+.playing .icon-pause {
+    display: block;
+}
+.paused .icon-play {
+    display: block;
 }
 .time {
     margin: 0 auto;

@@ -11,7 +11,7 @@ var sampleUrls = [
 "/static/samples/808/5.mp3", // High-conga
 "/static/samples/808/6.mp3", // Closed high hat
 "/static/samples/808/7.mp3", // Clap
-"/static/samples/808/8.mp3"
+"/static/samples/808/8.mp3"  // Cymbal
 ];
 
 errback = function() {
@@ -19,7 +19,9 @@ errback = function() {
 }
 
 // A place for samples to live
-sampleBuffers = []
+var sampleBuffers = []
+
+var loaded = 0;
 
 var url, i, len = sampleUrls.length;
 for(i=0, len=sampleUrls.length; i < len; i++) {
@@ -29,8 +31,12 @@ for(i=0, len=sampleUrls.length; i < len; i++) {
         var _i = i;
         soundLib.loadUrl(errback
           , function(buffer) {
-              sampleBuffers[_i] = buffer;
-              console.log("Loaded " + url);
+                sampleBuffers[_i] = buffer;
+                console.log("Loaded " + (_i + 1));
+                loaded++;
+                if (loaded == sampleUrls.length) {
+                    $(".main").removeClass("loading").addClass("paused");
+                }
           }
           , url);
     })();
@@ -87,8 +93,10 @@ $(".play").on("click", function(){
     playButton.toggleClass("pressed");
     if (playButton.hasClass("pressed")) {
         stepCol();
+        $(".main").removeClass("paused").addClass("playing");
     } else {
         clearTimeout(timer);
+        $(".main").removeClass("playing").addClass("paused");
     }
 });
 
