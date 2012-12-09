@@ -1,3 +1,14 @@
+#password-input label, #password-input .controls, .password-input {
+    display: none;
+}
+
+html {
+    -webkit-text-size-adjust: none;
+}
+
+body {
+    padding-top: 40px;
+}
 
 .main {
     min-width: 320px;
@@ -5,25 +16,26 @@
 .row {
     margin: 0px;
 }
-.row .beat-box {
+.row .span1 {
     width: 30px;
-    height: 30px;
     padding: 0;
     margin: 0;
     padding: 5px;
-    float: left;
 }
 .row .beat {
+    box-sizing: border-box;
     background-color: #EEE;
     text-align: center;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    -webkit-box-shadow: inset 0px 0px 10px rgba(50, 50, 50, 0.75);
-    -moz-box-shadow:    inset 0px 0px 10px rgba(50, 50, 50, 0.75);
-    box-shadow:         inset 0px 0px 10px rgba(50, 50, 50, 0.75);
+    -webkit-box-shadow: inset 0px 0px 10px 5px rgba(255, 255, 255, 0.50);
+    -moz-box-shadow:    inset 0px 0px 10px 5px rgba(255, 255, 255, 0.50);
+    box-shadow:         inset 0px 0px 10px 5px rgba(255, 255, 255, 0.50);
     width: 30px;
     height: 30px;
+
+    border: 1px solid white;
 }
 .row:hover .beat{
     background: #DDD;
@@ -31,35 +43,29 @@
 .row .beat:hover {
     background: #CCC;
 }
-.row .beat.pressed {
-    background-color: #FE2;
-}
+
 .beat.pressed:hover {
     background-color: #FC0;
 }
-.play {
+.time {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
     background-color: #F00;
 }
-
-.time {
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    -webkit-box-shadow: inset 0px 0px 10px rgba(50, 50, 50, 0.75);
-    -moz-box-shadow:    inset 0px 0px 10px rgba(50, 50, 50, 0.75);
-    box-shadow:         inset 0px 0px 10px rgba(50, 50, 50, 0.75);
-    width: 30px;
-    height: 10px;
-    background-color: red;
-    margin-top: 20px;
-}
 .play {
     position: relative;
-    width: 30px;
-    height: 30px;
+    width: 100px;
+    height: 20px;
+    margin-left: 25px;
+    margin-right: 30px;
+    text-align: left;
+}
+.paused .play:before {
+    content: 'Play'
+}
+.playing .play:before {
+    content: 'Pause'
 }
 .loading .play{
     background: url(/static/img/loader.gif) center center no-repeat;
@@ -67,8 +73,8 @@
 .icon-play, .icon-pause {
     display: none;
     position: absolute;
-    left: 9px;
-    top: 6px;    
+    right: 7px;
+    top: 5px;    
 }
 .playing .icon-pause {
     display: block;
@@ -76,14 +82,77 @@
 .paused .icon-play {
     display: block;
 }
+.time {
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 20px;
+    height: 20px;
+
+    /* Firefox v3.6+ */
+    background-image:-moz-linear-gradient(rgb(51,51,51) 0%,rgb(102,102,102) 100%); 
+    /* safari v4.0+ and by Chrome v3.0+ */
+    background-image:-webkit-gradient(linear,color-stop(0, rgb(51,51,51)),color-stop(1, rgb(102,102,102)));
+    /* Chrome v10.0+ and by safari nightly build*/
+    background-image:-webkit-linear-gradient(rgb(51,51,51) 0%,rgb(102,102,102) 100%);
+    /* Opera v11.10+ */
+    background-image:-o-linear-gradient(rgb(51,51,51) 0%,rgb(102,102,102) 100%);
+    /* IE v10+ */
+    background-image:-ms-linear-gradient(rgb(51,51,51) 0%,rgb(102,102,102) 100%);
+    background-image:linear-gradient(rgb(51,51,51) 0%,rgb(102,102,102) 100%);
+    -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff333333,endColorstr=#ff666666)";
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff333333,endColorstr=#ff666666);
+    border: 1px solid #666;
+}
 .step.time {
-    background-color: black;
+    background-color: white;
+    border-color: rgba(0,255,255,0.65);
+    box-shadow: 0 0 10px 0 rgba(0,255,255,0.65), inset 0 0 10px rgba(0,255,255,0.65);
 }
 .step.beat.pressed {
     background-color: black;
 }
 
-/* Hide the password input */
-#password-input label, #password-input .controls, .password-input {
-    display: none;
+.row:nth-child(2) .beat.pressed {
+    border: 1px solid #fcd20b;
+    background: #fcd20b;
+}
+.row:nth-child(3) .beat.pressed {
+    border: 1px solid #7fbb00;
+    background: #7fbb00;
+}
+.row:nth-child(3) .beat.pressed {
+    border: 1px solid #e47911;
+    background: #e47911;
+}
+.row:nth-child(4) .beat.pressed {
+    border: 1px solid #0060a3;
+    background: #0060a3;
+}
+.row:nth-child(5) .beat.pressed {
+    border: 1px solid #e54a4f;
+    background: #e54a4f;
+}
+.row:nth-child(6) .beat.pressed {
+    border: 1px solid #ea4c89;
+    background: #ea4c89;
+}
+.row:nth-child(7) .beat.pressed {
+    border: 1px solid #89c507;
+    background: #89c507;
+}
+.row:nth-child(8) .beat.pressed {
+    border: 1px solid #00bdf6;
+    background: #00bdf6;
+}
+.row:nth-child(9) .beat.pressed {
+    border: 1px solid #db4a39;
+    background: #db4a39;
+}
+
+.row .desc {
+    visibility: hidden;
+}
+
+.step {
+    background: red;
 }

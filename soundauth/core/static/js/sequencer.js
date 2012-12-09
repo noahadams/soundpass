@@ -66,8 +66,8 @@ var timer = null;
 /*
  * SETUP
  */
-var beatCol = "<div class=\"beat-box\"><div class=\"beat\"></div></div>";
-var timeCol = "<div class=\"beat-box\"><div class=\"time\"></div></div>";
+var beatCol = "<div class=\"span1\"><div class=\"beat\"></div></div>";
+var timeCol = "<div class=\"span1\"><div class=\"time\"></div></div>";
 var beatRow = "";
 var timeRow = "";
 
